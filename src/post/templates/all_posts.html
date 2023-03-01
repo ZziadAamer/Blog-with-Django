@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block base %}
+
+<a type="button" href=" {% url 'hi:create_post' %} " class="btn btn-danger mb-4" role="button">Add new post</a>
+  {% for post in all_posts %}
+      <div class="col-lg-4">
+          <div class="card" style="width: 20rem;">
+              {% if post.img %}
+                <img src="{{post.img.url}}" class="card-img-top" alt="...">
+              {% endif %}
+              <div class="card-body">
+              <h5 class="card-title">{{post.title}}</h5>
+              <p class="card-text">{{post.content |truncatewords:10}}</p>
+              <a href="{% url 'hi:post' post.id %}" class="btn btn-primary">Read More</a>
+              </div>
+          </div>
+      </div>
+  {% endfor %}
+{% endblock base %}
